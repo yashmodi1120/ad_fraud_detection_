@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: assignment-2
+  labels:
+    name: assignment-2
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: application-2
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-2
+spec:
+  selector:
+    matchLabels:
+      app: application-2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: application-2
+    spec:
+      imagePullSecrets:
+        - name: ad-fraud
+      containers:
+        - name: application-2
+          image: yashmodi1120/ad_fraud_detection:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_URL
+              value: jdbc:postgresql://postgres:5432/postgres
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+
+

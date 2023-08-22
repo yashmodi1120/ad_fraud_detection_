@@ -1,0 +1,9 @@
+kubectl apply -f kube //apply kubernates configuration files in yml to kubernates cluster
+minikube service assignment-2 --url //to get the url for kubernates
+kubectl get all //get all the properties of kubernates clusters
+
+docker tag image id username/repository:version control //to tag the image to be pushed in docker hub for kubernates
+docker push username/repository // to push the image to docker hub
+docker images //to see all the images in docker
+docker-compose up --build // to start services of docker as well as makes image
+mvn clean install -DskipTests=true //to make jar files
